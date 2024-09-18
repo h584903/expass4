@@ -5,16 +5,16 @@
 
   outputs = { self, nixpkgs }:
     let
-      javaVersion = 22; # Change this value to update the whole stack
+      javaVersion = 21; # Change this value to update the whole stack
 
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
     in
     {
       devShells.${system}.default = pkgs.mkShell {
-          buildInputs = with pkgs; [ maven gradle openjdk22 nodejs ];
+          buildInputs = with pkgs; [ maven gradle openjdk21 nodejs ];
           shellHook = ''
-              export JAVA_HOME=${pkgs.openjdk22}
+              export JAVA_HOME=${pkgs.openjdk21}
               PATH="${pkgs.jdk21}/bin:$PATH"
           '';
       };
